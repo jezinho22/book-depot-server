@@ -23,11 +23,12 @@ app.get("/books", async (request, response) => {
 
 app.post("/books", async (request, response) => {
 	const newBook = await Book.create(request.body);
-	// {title: "1984",
-	// description: "Dystopia",
-	// status: "In print",}
+	response.json(newBook);
+});
 
-	console.log("Book posted");
+app.delete("/books/:id", async (request, response) => {
+	const deletedBook = await Book.findByIdAndDelete(request.params.id);
+	response.json(deletedBook);
 });
 
 app.listen(PORT, () => console.log("App  listening on PAWT" + PORT));
