@@ -31,4 +31,10 @@ app.delete("/books/:id", async (request, response) => {
 	response.json(deletedBook);
 });
 
+app.put("/books/:id", async (request, response) => {
+	const id = request.params.id;
+	const body = request.body;
+	const updatedBook = await Book.findByIdAndUpdate(id, body);
+	response.json(updatedBook);
+});
 app.listen(PORT, () => console.log("App  listening on PAWT" + PORT));
